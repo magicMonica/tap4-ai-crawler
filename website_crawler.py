@@ -123,9 +123,12 @@ class WebsitCrawler:
 
             # 如果tags为非空数组，则使用llm工具处理tags
             processed_tags = None
-            if tags and detail:
-                processed_tags = llm.process_tags('tag_list is:' + ','.join(tags) + '. content is: ' + detail)
-
+            if tags == None:
+                tags = []
+            if tags:
+                logger.info("正在处理" + url + "站点，生成tags")
+            logger.info('llm process_tags begin')
+            processed_tags = llm.process_tags('tag_list is:' + ','.join(tags) + '. content is: ' + detail)
             # 循环languages数组， 使用llm工具生成各种语言
             processed_languages = []
             if languages:

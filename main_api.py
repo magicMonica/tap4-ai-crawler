@@ -95,6 +95,7 @@ def validate_authorization(authorization):
 
 
 async def async_worker(url, tags, languages, callback_url, key):
+    logger.info(f'async_worker begin:{callback_url}')
     # 爬虫处理封装为一个异步任务
     result = await website_crawler.scrape_website(url.strip(), tags, languages)
     # 通过requests post 请求调用call_back_url， 携带参数result， heaer 为key
